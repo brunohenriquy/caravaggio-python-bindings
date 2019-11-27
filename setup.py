@@ -9,25 +9,6 @@ from io import open
 from setuptools import setup
 import traceback
 
-extra_params = {}
-setup_requires = [
-    'sphinx==2.2.0',
-    'sphinxcontrib-inlinesyntaxhighlight==0.2']
-
-try:
-    from pip._internal import main
-    main(['install'] + setup_requires)
-    setup_requires = []
-except Exception:
-    try:
-        from pip._internal.main import main
-
-        main(['install'] + setup_requires)
-        setup_requires = []
-    except Exception:
-        # Going to use easy_install for
-        traceback.print_exc()
-
 
 def read(f):
     return open(f, 'r', encoding='utf-8').read()
@@ -58,23 +39,15 @@ if sys.argv[-1] == 'publish':
     shutil.rmtree('caravaggio-python-bindings.egg-info')
     sys.exit()
 
-from sphinx.setup_command import BuildDoc
-
-cmd_class = {
-    'docs': BuildDoc,
-}
-
 setup(
     version=version,
-    cmdclass=cmd_class,
     command_options={
-        'docs': {
+        'build_sphinx': {
             'project': ('setup.py', 'caravaggio-python-bindings'),
             'version': ('setup.py', version),
             'release': ('setup.py', version),
             'source_dir': ('setup.py', 'docs'),
             'build_dir': ('setup.py', '_build_docs')}},
-    setup_requires=setup_requires,
     setup_cfg=True
 )
 
