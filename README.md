@@ -18,13 +18,13 @@ install_requires =
     caravaggio-python-bindings==0.1.0
 
 dependency_links =
-    git://github.com/buildgroupai/caravaggio-python-bindings.git#egg=caravaggio-python-bindings-0.1.0
+    git://github.com/intellstartup/caravaggio-python-bindings.git#egg=caravaggio-python-bindings-0.1.0
 ```
 
 - In requirements.txt 
 
 ```shell script
-git://github.com/buildgroupai/caravaggio-python-bindings.git#egg=caravaggio-python-bindings-0.1.0
+git://github.com/intellstartup/caravaggio-python-bindings.git#egg=caravaggio-python-bindings-0.1.0
 ```
 
 # Our API implementation
