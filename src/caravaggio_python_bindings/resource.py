@@ -43,8 +43,7 @@ class Resource(object):
                     overrides=overrides, action=action, encoding=encoding,
                     transform=transform)
             except exceptions.ErrorMessage as error:
-                if error.error["status"] == \
-                        status.HTTP_429_TOO_MANY_REQUESTS:
+                if error.error.title.startswith(str(status.HTTP_429_TOO_MANY_REQUESTS)):
                     _logger.info("Throttling the request! waiting {} seconds".
                                  format(sec_btw_tries))
                     n_tries -= 1
