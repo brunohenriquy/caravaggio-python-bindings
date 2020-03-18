@@ -254,3 +254,15 @@ You can set the environment variables using the `%env` command in your cells:
 %env MYAPI_DOMAIN=http://localhost:8001
 %env MYAPI_TOKEN=ae579e7e53fb9abd646a6ff8aa99d4afe83ac291
 ```
+
+For Development
+-----------------
+In order to maintain a clean code, it's strongly recommended to install the
+project pre-commit hook. Just execute the following commands in the root
+directory:
+
+::
+
+    $ chmod +x pre-commit.sh
+
+    $ ln -s ../../pre-commit.sh .git/hooks/pre-commit
