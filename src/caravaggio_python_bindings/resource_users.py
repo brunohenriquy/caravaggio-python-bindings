@@ -16,11 +16,8 @@ class OrganizationResource(Resource):
             params=params)["results"]
 
     def get_organization(self, id):
-        overrides = {
-            "url": self.get_absolute_url(
-                "users/organization/{}/".
-                format(id))
-        }
+        overrides = {"url": self.get_absolute_url("users/organization/{}/".format(id))
+                     }
 
         return self.action(
             ['users', 'organization_read'], overrides=overrides)
@@ -31,9 +28,7 @@ class OrganizationResource(Resource):
 
     def update_organization(self, id, data, partial_update=True):
         overrides = {
-            "url": self.get_absolute_url(
-                "users/organization/{}/".
-                format(id))
+            "url": self.get_absolute_url("users/organization/{}/".format(id))
         }
 
         action = "organization_update" \
@@ -84,9 +79,7 @@ class OrganizationResource(Resource):
                 self.remove_restricted_member(id, emails)
 
         overrides = {
-            "url": self.get_absolute_url(
-                "users/organization/{}/".
-                    format(id))
+            "url": self.get_absolute_url("users/organization/{}/".format(id))
         }
 
         return self.action(
@@ -177,9 +170,7 @@ class OrganizationResource(Resource):
             organization = organization["id"]
 
         overrides = {
-            "url": self.get_absolute_url(
-                "users/organization/{}/add_{}/".
-                    format(organization,relation))
+            "url": self.get_absolute_url("users/organization/{}/add_{}/".format(organization, relation))
         }
 
         if not isinstance(emails, (list, set)):
@@ -210,9 +201,7 @@ class OrganizationResource(Resource):
             organization = organization["id"]
 
         overrides = {
-            "url": self.get_absolute_url(
-                "users/organization/{}/remove_{}/".
-                    format(organization,relation))
+            "url": self.get_absolute_url("users/organization/{}/remove_{}/".format(organization, relation))
         }
 
         if not isinstance(emails, (list, set)):
