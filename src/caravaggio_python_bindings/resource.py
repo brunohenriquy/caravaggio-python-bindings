@@ -5,19 +5,18 @@
 # any circumstances be used, copied, or distributed.
 import logging
 import time
-from coreapi import exceptions
 
 from caravaggio_python_bindings import status
+from coreapi import exceptions
 
 _logger = logging.getLogger("caravaggio_python_bindings.resource")
 
 
 class Resource(object):
-
     sec_btw_tries = 5
     """
     How much time we need to wait for the next try to do the request to
-    the server if we got a HTTP_429_TOO_MANY_REQUESTS error. 
+    the server if we got a HTTP_429_TOO_MANY_REQUESTS error.
     """
 
     def __init__(self, api, tries=12):
