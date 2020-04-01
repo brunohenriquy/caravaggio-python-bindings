@@ -24,27 +24,37 @@ class Resource(object):
         self.n_tries = tries
 
     def get_absolute_url(self, relative_url):
-        return '{}{}{}'.format(
-            self.api.domain,
-            "/" if not self.api.domain.endswith("/") else "",
-            relative_url)
+        return "{}{}{}".format(self.api.domain, "/" if not self.api.domain.endswith("/") else "", relative_url)
 
-    def action(self, keys, params=None, validate=True, overrides=None,
-               action=None, encoding=None, transform=None,
-               n_tries=None, sec_btw_tries=None):
+    def action(
+        self,
+        keys,
+        params=None,
+        validate=True,
+        overrides=None,
+        action=None,
+        encoding=None,
+        transform=None,
+        n_tries=None,
+        sec_btw_tries=None,
+    ):
         n_tries = self.n_tries if n_tries is None else n_tries
-        sec_btw_tries = self.sec_btw_tries \
-            if sec_btw_tries is None else sec_btw_tries
+        sec_btw_tries = self.sec_btw_tries if sec_btw_tries is None else sec_btw_tries
         while n_tries:
             try:
                 return self.api.client.action(
-                    self.api.schema, keys, params=params, validate=validate,
-                    overrides=overrides, action=action, encoding=encoding,
-                    transform=transform)
+                    self.api.schema,
+                    keys,
+                    params=params,
+                    validate=validate,
+                    overrides=overrides,
+                    action=action,
+                    encoding=encoding,
+                    transform=transform,
+                )
             except exceptions.ErrorMessage as error:
                 if error.error.title.startswith(str(status.HTTP_429_TOO_MANY_REQUESTS)):
-                    _logger.info("Throttling the request! waiting {} seconds".
-                                 format(sec_btw_tries))
+                    _logger.info("Throttling the request! waiting {} seconds".format(sec_btw_tries))
                     n_tries -= 1
                     time.sleep(sec_btw_tries)
                 else:

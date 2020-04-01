@@ -8,8 +8,7 @@ import coreapi
 
 from coreapi_cli import codec_plugins
 
-from caravaggio_python_bindings.resource_users import \
-    OrganizationResource, UserResource
+from caravaggio_python_bindings.resource_users import OrganizationResource, UserResource
 
 
 class CaravaggioAPI(object):
@@ -33,17 +32,15 @@ class CaravaggioAPI(object):
                 raise EnvironmentError(
                     "No {0} was found in the environment"
                     ". Please, make sure you have define"
-                    " the {0} environment.".format(self.CARAVAGGIO_TOKEN))
+                    " the {0} environment.".format(self.CARAVAGGIO_TOKEN)
+                )
 
         if domain is None:
-            domain = os.getenv(
-                self.CARAVAGGIO_DOMAIN, self.default_domain)
+            domain = os.getenv(self.CARAVAGGIO_DOMAIN, self.default_domain)
 
         self.domain = domain
 
-        auth = coreapi.auth.TokenAuthentication(
-            scheme="Token", token=token
-        )
+        auth = coreapi.auth.TokenAuthentication(scheme="Token", token=token)
 
         # Codecs are responsible for decoding a bytestring into a Document
         # instance, or for encoding a Document instance into a bytestring.
@@ -53,9 +50,8 @@ class CaravaggioAPI(object):
 
         if self.domain not in self.schemas:
             self.schema = self.client.get(
-                '{}{}swagger/?format=openapi'.
-                format(self.domain, "/" if not self.
-                       domain.endswith("/") else ""))
+                "{}{}swagger/?format=openapi".format(self.domain, "/" if not self.domain.endswith("/") else "")
+            )
             self.schemas[self.domain] = self.schema
         else:
             self.schema = self.schemas[self.domain]
