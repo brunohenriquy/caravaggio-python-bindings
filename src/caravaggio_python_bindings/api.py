@@ -24,7 +24,9 @@ class CaravaggioAPI(object):
     Caravaggio API clients
     """
 
-    def __init__(self, token=None, domain=None):
+    def __init__(self, token=None, domain=None, organization_id=None):
+
+        self.organization_id = organization_id
 
         if token is None:
             token = os.getenv(self.CARAVAGGIO_TOKEN, None)

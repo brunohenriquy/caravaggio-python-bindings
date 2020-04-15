@@ -42,6 +42,9 @@ class Resource(object):
         sec_btw_tries = self.sec_btw_tries if sec_btw_tries is None else sec_btw_tries
         while n_tries:
             try:
+                if self.api.organization_id:
+                    params["_org_id"] = str(self.api.organization_id)
+
                 return self.api.client.action(
                     self.api.schema,
                     keys,
