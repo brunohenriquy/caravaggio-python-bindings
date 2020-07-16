@@ -1,5 +1,5 @@
 __title__ = "BGDS Caravaggio Python Bindings"
-__version__ = "0.1.0-SNAPSHOT"
+__version__ = "R202007"
 __author__ = "Javier Alperte"
 __copyright__ = "Copyright 2019 BuildGroup Data Services Inc."
 

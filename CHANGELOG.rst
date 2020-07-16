@@ -3,9 +3,11 @@ Changelog
 ##########
 
 
-Current
+R202007
 =======
 
+New Features
+************
 - Use of coreapi and coreapi-cli libraries to implement API-Client code for
 caravaggio projects.
 
